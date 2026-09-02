@@ -65,7 +65,9 @@ real rather than decorative.
 # Frontend
 cd web
 npm install
-npm run dev          # http://localhost:3000
+npm run dev          # http://localhost:3000  (redirects to /en)
+npm test             # feature parity + translation completeness
+npm run typecheck    # next typegen, then tsc
 ```
 
 ```bash

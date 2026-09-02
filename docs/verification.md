@@ -15,7 +15,7 @@ python scripts/verify.py
 Takes about a minute. Ends with either:
 
 ```
-  13 passed, 0 failed, 3 skipped
+  15 passed, 0 failed, 2 skipped
 Everything that can be checked right now is working.
 ```
 
@@ -97,6 +97,23 @@ are later wrong you know it is the model and not the wiring. `/healthz` reports
 `"trained": false` and the server logs a warning, so this can never be mistaken for a
 working model.
 
+### 9. Web frontend
+
+**`npm test` (13 tests)** — two groups:
+
+- *Golden-vector parity*: `features.ts` is loaded against the **same fixture files** the
+  Python test uses, asserting agreement to 1e-5. This is the other half of the guard
+  described in check 4. With both halves passing, the browser and the training pipeline
+  provably compute identical features.
+- *Translation completeness*: `en.json` and `fil.json` have identical key sets, no empty
+  values, and no Filipino string that is byte-identical to its English counterpart
+  (excluding an explicit allow-list for proper nouns). This catches the failure where the
+  Filipino toggle silently does nothing on part of the site.
+
+**`npm run typecheck`** — runs `next typegen` first, then `tsc`. The typegen step matters:
+Next generates route types, and running `tsc` against a stale set reports errors the real
+build does not have.
+
 ---
 
 ## Prove the checks are real
@@ -118,6 +135,14 @@ git checkout -- api/app/features.py
 python -c "p='ml/src/features.py';s=open(p).read();open(p,'w').write(s.replace('/ scale','/ 1.0'))"
 ```
 The invariance test and the golden parity test should both fail. Restore the same way.
+
+**Break the TypeScript port** (the most important one):
+```bash
+python -c "p='web/src/lib/features.ts';s=open(p).read();open(p,'w').write(s.replace('[5, 9, 13, 17]','[5, 9, 13, 18]'))"
+```
+That changes a single landmark index by one. Run `cd web && npm test` — the parity test
+should fail and name the exact frame and column where the two implementations diverge.
+Restore with `git checkout -- web/src/lib/features.ts`.
 
 **Break the dictionary:** add a row to `content/seed.csv` with a slug that already exists,
 then run `python scripts/build_signs.py --check`.
@@ -202,11 +227,10 @@ thing. See [`../content/README.md`](../content/README.md).
 
 | Not covered | Why |
 |---|---|
-| **The web frontend** | Not scaffolded — needs Node.js installed |
-| **`features.ts`** | Not written yet. When it is, it must pass the same golden fixtures the Python side does. Until then, half the parity guard is missing |
 | **Docker image** | Docker not installed. Once it is: `docker build -t strongasl-api ./api` |
 | **Model accuracy** | No trained model exists. Phase 4 |
 | **Deployment** | Nothing deployed yet |
+| **Visual appearance** | Tests confirm strings translate and pages build; they do not confirm the design looks right. Run `cd web && npm run dev` and look |
 
 Green here means **the plumbing is correct**. It does not mean the app works — there is no
 app yet, and no model that has learned anything. Those are honestly different claims and
@@ -238,3 +262,16 @@ cd ml
 
 **A port is already in use** — the script picks a free port automatically. If it still
 fails, something is blocking loopback connections, usually a firewall or VPN.
+
+**`UnicodeEncodeError` running something by hand** — Windows consoles often report
+`cp1252`, and several tools here print non-ASCII (PyTorch's ONNX exporter prints emoji).
+`verify.py` sets `PYTHONIOENCODING=utf-8` for everything it launches, and `export_onnx.py`
+forces UTF-8 on its own streams, so this should not happen. If you hit it in a script that
+predates those fixes, prefix the command:
+
+```bash
+PYTHONIOENCODING=utf-8 python the-script.py
+```
+
+**`tsc` reports errors but `npm run build` passes** — your route types are stale. Run
+`npm run typecheck`, which does `next typegen` first.

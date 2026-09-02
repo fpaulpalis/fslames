@@ -32,18 +32,34 @@ if os.name != "nt":  # macOS / Linux layout
 
 results: list[tuple[str, str, str]] = []   # (status, name, detail)
 
+# This script prints output captured from other programs, which may contain
+# any character. Windows consoles frequently report a cp1252 stdout, where a
+# single em-dash in a subprocess's output would otherwise crash the whole run
+# with UnicodeEncodeError. Ask for UTF-8, and sanitize as a fallback for
+# terminals that refuse it.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
+except (AttributeError, OSError):
+    pass
+
 
 # --------------------------------------------------------------------------
 # Reporting
 # --------------------------------------------------------------------------
 
+def safe(text: str) -> str:
+    """Drop characters the active console cannot render, rather than crashing."""
+    encoding = sys.stdout.encoding or "utf-8"
+    return text.encode(encoding, errors="replace").decode(encoding, errors="replace")
+
+
 def record(status: str, name: str, detail: str = "") -> None:
     results.append((status, name, detail))
     symbol = {"PASS": "  OK  ", "FAIL": " FAIL ", "SKIP": " SKIP "}[status]
-    print(f"[{symbol}] {name}")
+    print(safe(f"[{symbol}] {name}"))
     if detail:
         for line in detail.splitlines():
-            print(f"          {line}")
+            print(safe(f"          {line}"))
 
 
 def section(title: str) -> None:
@@ -52,6 +68,12 @@ def section(title: str) -> None:
 
 def run(cmd: list[str], cwd: Path | None = None, timeout: int = 300):
     """Run a command, returning (ok, combined_output)."""
+    # Force UTF-8 in every child process. Without this, any subprocess that
+    # prints a non-ASCII character (torch's exporter prints emoji) dies with
+    # UnicodeEncodeError on a cp1252 console, and the traceback points at the
+    # library rather than at the encoding.
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
+
     try:
         proc = subprocess.run(
             cmd,
@@ -61,6 +83,7 @@ def run(cmd: list[str], cwd: Path | None = None, timeout: int = 300):
             timeout=timeout,
             encoding="utf-8",
             errors="replace",
+            env=env,
         )
         return proc.returncode == 0, (proc.stdout or "") + (proc.stderr or "")
     except FileNotFoundError:
@@ -277,12 +300,36 @@ def check_live_api() -> None:
             proc.kill()
 
 
-def check_not_yet_possible() -> None:
-    section("9. Not testable yet")
-    if (REPO / "web" / "package.json").exists():
-        record("SKIP", "web frontend", "scaffolded - run its own tests with: cd web && npm test")
-    else:
+def check_web() -> None:
+    section("9. Web frontend")
+    web = REPO / "web"
+
+    if not (web / "package.json").exists():
         record("SKIP", "web frontend", "not scaffolded yet (needs Node.js installed)")
+        return
+    if not (web / "node_modules").exists():
+        record("FAIL", "web dependencies installed", "run: cd web && npm install")
+        return
+
+    npm = "npm.cmd" if os.name == "nt" else "npm"
+
+    # The TypeScript half of the golden-vector parity guard lives here. Until
+    # this passes, features.ts and features.py could silently disagree.
+    good, out = run([npm, "test"], cwd=web, timeout=600)
+    summary = next((l.strip() for l in out.splitlines() if "Tests " in l), "")
+    record("PASS" if good else "FAIL",
+           "web tests (feature parity + translation completeness)",
+           summary or out.strip()[-300:])
+
+    # `next typegen` first: route types are generated, and a stale set makes
+    # tsc report errors that the real build does not have.
+    good, out = run([npm, "run", "typecheck"], cwd=web, timeout=600)
+    record("PASS" if good else "FAIL", "web typechecks",
+           "" if good else out.strip()[-400:])
+
+
+def check_not_yet_possible() -> None:
+    section("10. Not testable yet")
 
     docker, _ = run(["docker", "--version"], timeout=30)
     record("SKIP", "docker image build",
@@ -309,6 +356,7 @@ def main() -> int:
         check_model()
         check_export()
         check_live_api()
+    check_web()
     check_not_yet_possible()
 
     passed = sum(1 for s, _, _ in results if s == "PASS")
@@ -328,7 +376,8 @@ def main() -> int:
         return 1
 
     print("\nEverything that can be checked right now is working.")
-    print("Next: install Node.js 22, then scaffold web/.")
+    print("That proves the plumbing, not that the app is finished -")
+    print("see docs/roadmap.md for what is actually built.")
     return 0
 
 

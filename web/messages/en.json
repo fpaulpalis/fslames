@@ -1,0 +1,38 @@
+{
+  "site": {
+    "name": "Strong ASL",
+    "tagline": "Your comprehensive guide to learning sign language"
+  },
+  "nav": {
+    "home": "Home",
+    "dictionary": "Dictionary",
+    "ai": "AI",
+    "learn": "Learn",
+    "switchLanguage": "Switch language"
+  },
+  "home": {
+    "welcome": "Welcome to Strong ASL",
+    "searchTitle": "Sign Search",
+    "searchHelp": "Search for signs by typing the word you are looking for.",
+    "searchPlaceholder": "Type the sign here",
+    "searchButton": "Search",
+    "browseTitle": "Browse the sign database",
+    "practiceCta": "Practice With AI"
+  },
+  "ai": {
+    "badge": "Practice with instant feedback",
+    "title": "Sign Language AI",
+    "intro": "Record one sign, review the strongest matches, and jump back into the dictionary when you want to compare the result with a reference example.",
+    "wordTitle": "Word Predictor",
+    "wordBody": "Use the word predictor when you want to check a vocabulary sign against entries from the Strong ASL dictionary.",
+    "wordCta": "Start Word Practice",
+    "letterTitle": "Letter Predictor",
+    "letterBody": "Use the letter predictor for alphabet drills, fingerspelling warmups, or quick checks while learning handshape distinctions.",
+    "letterCta": "Start Letter Practice"
+  },
+  "dictionary": {
+    "title": "ASL Dictionary",
+    "alphabetTitle": "ASL Alphabet",
+    "entries": "{count, plural, =0 {no signs} one {# sign} other {# signs}}"
+  }
+}

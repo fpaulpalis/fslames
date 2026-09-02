@@ -17,11 +17,14 @@ Last updated: 2026-09-03
 | `api/` — FastAPI service | ✅ done, 13 tests passing |
 | End-to-end prediction through HTTP | ✅ verified with an untrained model |
 | `content/` — CSV → validated `signs.json` | ✅ done, 48 seed entries |
-| **Node.js 22 installed** | ⛔ **blocking** |
-| `web/` scaffolded with `create-next-app` | ⛔ blocked on Node |
+| Node.js 22 installed | ✅ done (v22.23.2) |
+| `web/` scaffolded (Next 16 + Tailwind 4 + next-intl) | ✅ done |
+| `web/src/lib/features.ts` + golden parity test | ✅ done, 13 tests passing |
+| `scripts/verify.py` covers everything above | ✅ done, 15 checks |
 | Deployed to Vercel | ⬜ not started |
 
-**Next action:** install Node 22 LTS from [nodejs.org](https://nodejs.org), then scaffold `web/`.
+**Next action:** deploy `web/` to Vercel to close out Phase 0, then build the
+dictionary pages in Phase 2.
 
 ### What "end-to-end verified" means here
 
@@ -33,11 +36,13 @@ mistaken for a working model.
 
 ---
 
-## Phase 1 — Site shell and static pages · ⬜ not started
+## Phase 1 — Site shell and static pages · ⏳ in progress
 
-Header, tab nav (Home / Dictionary / AI / Learn), footer. `next-intl` routing at `/en`
-and `/fil`. Home, About, Contact, Privacy. Six terminology pages from one template.
-Alphabet guide and the a–z photo grid.
+Done: header with locale toggle, tab nav (Home / Dictionary / AI / Learn), `next-intl`
+routing at `/en` and `/fil`, home page, AI hub page. Both locales prerender statically.
+
+Remaining: footer, About, Contact, Privacy, the six terminology pages from one template,
+the alphabet guide, and the a–z photo grid.
 
 **Done when:** every nav link resolves, and toggling `/en` ↔ `/fil` changes every visible
 string with no hardcoded English left behind.
@@ -80,8 +85,8 @@ Still to write: `extract_landmarks.py`, `dataset.py`, `train.py`, `evaluate.py`.
 dataset points at third-party URLs and a meaningful fraction are dead. Find out early
 whether you need mirrors or a reduced gloss list.
 
-⚠️ **Write `web/src/lib/features.ts` and its parity test BEFORE wiring any UI.** See
-[`feature-spec.md`](feature-spec.md).
+✅ `web/src/lib/features.ts` and its parity test are already done — verified to reproduce
+the Python output exactly against the shared golden fixtures.
 
 **Done when:** you sign 10 trained words and at least 7 appear in the top-5, and CORS
 works from the deployed Vercel domain rather than only localhost.
@@ -104,3 +109,5 @@ accounts, only once there is something worth saving.
 | `params` on all sign entries | Deliberately `null`. Handshape/location/movement were not guessed — wrong articulatory data actively teaches people the wrong thing. Fill in from your own recordings. |
 | Python version | 3.14 verified working. The common "you must use 3.11" advice is out of date since mediapipe 1.0. |
 | `torch.onnx.export` | Must use `dynamic_shapes` (not `dynamic_axes`) **and** a batch-2 example, or the batch axis silently pins to 1. Already handled in `export_onnx.py`. |
+| Console encoding on Windows | `torch.onnx.export` prints emoji. On a cp1252 console (Git Bash, several Windows terminals) that raises `UnicodeEncodeError` and kills the export mid-run, with a traceback pointing at torch internals. Fixed by forcing UTF-8 stdout in `export_onnx.py` and setting `PYTHONIOENCODING` for subprocesses in `verify.py`. |
+| Dark mode | `web/src/app/globals.css` declares `color-scheme: light`. The scaffold's default dark block only flipped two variables while every section sets its own surface colour, producing a broken half-dark page. Real dark mode needs surfaces tokenised first. |

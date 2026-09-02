@@ -1,0 +1,38 @@
+{
+  "site": {
+    "name": "Strong ASL",
+    "tagline": "Ang iyong gabay sa pag-aaral ng sign language"
+  },
+  "nav": {
+    "home": "Home",
+    "dictionary": "Diksyunaryo",
+    "ai": "AI",
+    "learn": "Matuto",
+    "switchLanguage": "Palitan ang wika"
+  },
+  "home": {
+    "welcome": "Maligayang pagdating sa Strong ASL",
+    "searchTitle": "Paghahanap ng Senyas",
+    "searchHelp": "Maghanap ng senyas sa pamamagitan ng pag-type ng salitang hinahanap mo.",
+    "searchPlaceholder": "I-type ang senyas dito",
+    "searchButton": "Hanapin",
+    "browseTitle": "Tingnan ang database ng mga senyas",
+    "practiceCta": "Magsanay Kasama ang AI"
+  },
+  "ai": {
+    "badge": "Magsanay nang may agarang feedback",
+    "title": "Sign Language AI",
+    "intro": "Mag-record ng isang senyas, tingnan ang pinakamalapit na tugma, at bumalik sa diksyunaryo kung nais mong ihambing ang resulta sa halimbawa.",
+    "wordTitle": "Panghula ng Salita",
+    "wordBody": "Gamitin ang panghula ng salita kapag nais mong suriin ang isang senyas laban sa mga entry sa diksyunaryo ng Strong ASL.",
+    "wordCta": "Simulan ang Pagsasanay sa Salita",
+    "letterTitle": "Panghula ng Letra",
+    "letterBody": "Gamitin ang panghula ng letra para sa pagsasanay sa alpabeto, fingerspelling warmup, o mabilisang pagsusuri ng hugis ng kamay.",
+    "letterCta": "Simulan ang Pagsasanay sa Letra"
+  },
+  "dictionary": {
+    "title": "Diksyunaryo ng ASL",
+    "alphabetTitle": "Alpabeto ng ASL",
+    "entries": "{count, plural, =0 {walang senyas} one {# senyas} other {# na senyas}}"
+  }
+}

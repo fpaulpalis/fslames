@@ -166,7 +166,7 @@ def main() -> int:
     }
 
     if args.check:
-        print(f"OK — {len(entries)} entries valid (nothing written)")
+        print(f"OK - {len(entries)} entries valid (nothing written)")
         return 0
 
     OUTPUT_PATH.write_text(

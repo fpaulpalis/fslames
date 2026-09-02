@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+}
+
+/*
+  This app is deliberately light-only for now.
+
+  create-next-app ships a `@media (prefers-color-scheme: dark)` block that flips
+  --background and --foreground. That does not work here: every section sets its
+  own explicit surface colour (bg-neutral-50, bg-white, the amber hero), so
+  inverting only those two variables produced a broken half-dark page — a black
+  band under the content and near-white headings on light panels.
+
+  Proper dark mode means tokenising every surface, which is a real design task.
+  Declaring `color-scheme: light` is the honest interim: form controls and
+  scrollbars render light, and nothing silently half-inverts.
+
+  TODO: tokenise surfaces and add a real dark palette.
+*/
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  body {
+    /* In @layer base so Tailwind utilities can still override it. The default
+       scaffold set this unlayered, which beat every bg-* and text-* class. */
+    background-color: #ffffff;
+    color: #171717;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+}

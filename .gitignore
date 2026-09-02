@@ -65,3 +65,9 @@ api/models/*.labels.json
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# ---------- Next.js / web ----------
+web/.next/
+web/node_modules/
+web/next-env.d.ts
+web/.vercel

@@ -19,7 +19,24 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+# MUST run before importing torch.
+#
+# torch.onnx.export prints its progress with a check-mark emoji (U+2705). On a
+# console reporting cp1252 - which is the default for Git Bash and several
+# Windows terminals - that print raises UnicodeEncodeError and kills the export
+# partway through, with a traceback that points at torch internals and gives no
+# hint that the real problem is console encoding. The export itself is fine.
+#
+# errors="replace" means an unrenderable character degrades to a placeholder
+# instead of taking the process down.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
+    except (AttributeError, OSError):
+        pass
 
 import numpy as np
 import torch

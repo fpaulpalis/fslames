@@ -1,0 +1,1377 @@
+{
+  "version": 1,
+  "generatedFrom": "content/seed.csv",
+  "counts": {
+    "total": 48,
+    "verified": 0,
+    "withVideo": 0,
+    "inModel": 0,
+    "wlaslCandidates": 36
+  },
+  "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "L",
+    "M",
+    "N",
+    "P",
+    "R",
+    "S",
+    "T",
+    "W",
+    "Y"
+  ],
+  "categories": [
+    "actions",
+    "animals",
+    "colors",
+    "courtesy",
+    "describing",
+    "education",
+    "family",
+    "food-drink",
+    "greetings",
+    "objects",
+    "people"
+  ],
+  "signs": [
+    {
+      "slug": "apple",
+      "gloss": {
+        "en": "apple",
+        "fil": "mansanas"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "A",
+      "category": "food-drink",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "bird",
+      "gloss": {
+        "en": "bird",
+        "fil": "ibon"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "B",
+      "category": "animals",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "black",
+      "gloss": {
+        "en": "black",
+        "fil": "itim"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "B",
+      "category": "colors",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "blue",
+      "gloss": {
+        "en": "blue",
+        "fil": "asul"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "bughaw"
+        ]
+      },
+      "letter": "B",
+      "category": "colors",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "book",
+      "gloss": {
+        "en": "book",
+        "fil": "libro"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "aklat"
+        ]
+      },
+      "letter": "B",
+      "category": "objects",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "cat",
+      "gloss": {
+        "en": "cat",
+        "fil": "pusa"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "C",
+      "category": "animals",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "chair",
+      "gloss": {
+        "en": "chair",
+        "fil": "upuan"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "silya"
+        ]
+      },
+      "letter": "C",
+      "category": "objects",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "child",
+      "gloss": {
+        "en": "child",
+        "fil": "bata"
+      },
+      "aliases": {
+        "en": [
+          "kid"
+        ],
+        "fil": []
+      },
+      "letter": "C",
+      "category": "people",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "color",
+      "gloss": {
+        "en": "color",
+        "fil": "kulay"
+      },
+      "aliases": {
+        "en": [
+          "colour"
+        ],
+        "fil": []
+      },
+      "letter": "C",
+      "category": "colors",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "computer",
+      "gloss": {
+        "en": "computer",
+        "fil": "kompyuter"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "C",
+      "category": "objects",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "cow",
+      "gloss": {
+        "en": "cow",
+        "fil": "baka"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "C",
+      "category": "animals",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "deaf",
+      "gloss": {
+        "en": "deaf",
+        "fil": "bingi"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "D",
+      "category": "describing",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "doctor",
+      "gloss": {
+        "en": "doctor",
+        "fil": "doktor"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "manggagamot"
+        ]
+      },
+      "letter": "D",
+      "category": "people",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "dog",
+      "gloss": {
+        "en": "dog",
+        "fil": "aso"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "D",
+      "category": "animals",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "drink",
+      "gloss": {
+        "en": "drink",
+        "fil": "inom"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "uminom"
+        ]
+      },
+      "letter": "D",
+      "category": "actions",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "eat",
+      "gloss": {
+        "en": "eat",
+        "fil": "kain"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "kumain"
+        ]
+      },
+      "letter": "E",
+      "category": "actions",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "family",
+      "gloss": {
+        "en": "family",
+        "fil": "pamilya"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "mag-anak"
+        ]
+      },
+      "letter": "F",
+      "category": "family",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "father",
+      "gloss": {
+        "en": "father",
+        "fil": "tatay"
+      },
+      "aliases": {
+        "en": [
+          "dad"
+        ],
+        "fil": [
+          "ama",
+          "papa"
+        ]
+      },
+      "letter": "F",
+      "category": "family",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "fish",
+      "gloss": {
+        "en": "fish",
+        "fil": "isda"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "F",
+      "category": "animals",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "friend",
+      "gloss": {
+        "en": "friend",
+        "fil": "kaibigan"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "kabarkada"
+        ]
+      },
+      "letter": "F",
+      "category": "people",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "green",
+      "gloss": {
+        "en": "green",
+        "fil": "berde"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "luntian"
+        ]
+      },
+      "letter": "G",
+      "category": "colors",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "hat",
+      "gloss": {
+        "en": "hat",
+        "fil": "sumbrero"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "H",
+      "category": "objects",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "hello",
+      "gloss": {
+        "en": "hello",
+        "fil": "kumusta"
+      },
+      "aliases": {
+        "en": [
+          "hi",
+          "greetings"
+        ],
+        "fil": [
+          "kamusta",
+          "hi"
+        ]
+      },
+      "letter": "H",
+      "category": "greetings",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "help",
+      "gloss": {
+        "en": "help",
+        "fil": "tulong"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "tumulong"
+        ]
+      },
+      "letter": "H",
+      "category": "actions",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "house",
+      "gloss": {
+        "en": "house",
+        "fil": "bahay"
+      },
+      "aliases": {
+        "en": [
+          "home"
+        ],
+        "fil": [
+          "tahanan"
+        ]
+      },
+      "letter": "H",
+      "category": "objects",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "language",
+      "gloss": {
+        "en": "language",
+        "fil": "wika"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "lengguwahe"
+        ]
+      },
+      "letter": "L",
+      "category": "education",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "love",
+      "gloss": {
+        "en": "love",
+        "fil": "mahal"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "pag-ibig",
+          "pagmamahal"
+        ]
+      },
+      "letter": "L",
+      "category": "describing",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "man",
+      "gloss": {
+        "en": "man",
+        "fil": "lalaki"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "M",
+      "category": "people",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "mother",
+      "gloss": {
+        "en": "mother",
+        "fil": "nanay"
+      },
+      "aliases": {
+        "en": [
+          "mom",
+          "mum"
+        ],
+        "fil": [
+          "ina",
+          "mama"
+        ]
+      },
+      "letter": "M",
+      "category": "family",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "name",
+      "gloss": {
+        "en": "name",
+        "fil": "pangalan"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "N",
+      "category": "describing",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "no",
+      "gloss": {
+        "en": "no",
+        "fil": "hindi"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "hindi po"
+        ]
+      },
+      "letter": "N",
+      "category": "courtesy",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "play",
+      "gloss": {
+        "en": "play",
+        "fil": "laro"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "maglaro"
+        ]
+      },
+      "letter": "P",
+      "category": "actions",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "please",
+      "gloss": {
+        "en": "please",
+        "fil": "pakiusap"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "paki"
+        ]
+      },
+      "letter": "P",
+      "category": "courtesy",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "red",
+      "gloss": {
+        "en": "red",
+        "fil": "pula"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "R",
+      "category": "colors",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "school",
+      "gloss": {
+        "en": "school",
+        "fil": "paaralan"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "eskwelahan"
+        ]
+      },
+      "letter": "S",
+      "category": "education",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "shirt",
+      "gloss": {
+        "en": "shirt",
+        "fil": "kamiseta"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "polo"
+        ]
+      },
+      "letter": "S",
+      "category": "objects",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "study",
+      "gloss": {
+        "en": "study",
+        "fil": "mag-aral"
+      },
+      "aliases": {
+        "en": [
+          "learn"
+        ],
+        "fil": [
+          "aral",
+          "matuto"
+        ]
+      },
+      "letter": "S",
+      "category": "education",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "table",
+      "gloss": {
+        "en": "table",
+        "fil": "mesa"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "lamesa"
+        ]
+      },
+      "letter": "T",
+      "category": "objects",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "teacher",
+      "gloss": {
+        "en": "teacher",
+        "fil": "guro"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "titser",
+          "maestro"
+        ]
+      },
+      "letter": "T",
+      "category": "education",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "thank-you",
+      "gloss": {
+        "en": "thank you",
+        "fil": "salamat"
+      },
+      "aliases": {
+        "en": [
+          "thanks"
+        ],
+        "fil": [
+          "maraming salamat"
+        ]
+      },
+      "letter": "T",
+      "category": "courtesy",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": false,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "walk",
+      "gloss": {
+        "en": "walk",
+        "fil": "lakad"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "maglakad"
+        ]
+      },
+      "letter": "W",
+      "category": "actions",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "water",
+      "gloss": {
+        "en": "water",
+        "fil": "tubig"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "W",
+      "category": "food-drink",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "white",
+      "gloss": {
+        "en": "white",
+        "fil": "puti"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "W",
+      "category": "colors",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "woman",
+      "gloss": {
+        "en": "woman",
+        "fil": "babae"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "W",
+      "category": "people",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "work",
+      "gloss": {
+        "en": "work",
+        "fil": "trabaho"
+      },
+      "aliases": {
+        "en": [
+          "job"
+        ],
+        "fil": [
+          "magtrabaho"
+        ]
+      },
+      "letter": "W",
+      "category": "actions",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "write",
+      "gloss": {
+        "en": "write",
+        "fil": "sulat"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "magsulat"
+        ]
+      },
+      "letter": "W",
+      "category": "actions",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "yellow",
+      "gloss": {
+        "en": "yellow",
+        "fil": "dilaw"
+      },
+      "aliases": {
+        "en": [],
+        "fil": []
+      },
+      "letter": "Y",
+      "category": "colors",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    },
+    {
+      "slug": "yes",
+      "gloss": {
+        "en": "yes",
+        "fil": "oo"
+      },
+      "aliases": {
+        "en": [],
+        "fil": [
+          "opo"
+        ]
+      },
+      "letter": "Y",
+      "category": "courtesy",
+      "media": {
+        "video": null,
+        "poster": null
+      },
+      "params": null,
+      "notes": {
+        "en": "",
+        "fil": ""
+      },
+      "modelLabel": null,
+      "inModel": false,
+      "wlaslCandidate": true,
+      "contentStatus": "draft"
+    }
+  ]
+}

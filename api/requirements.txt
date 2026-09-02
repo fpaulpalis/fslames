@@ -1,0 +1,17 @@
+# Inference service dependencies.
+#
+# Deliberately NO torch. Training happens in PyTorch (see ml/requirements.txt);
+# serving runs the exported ONNX graph. That keeps the Docker image around
+# 300 MB instead of ~2.5 GB, which is the difference between deploying on a
+# small cheap instance and needing a much larger one.
+
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+pydantic>=2.8,<3
+
+numpy>=2.0,<3
+onnxruntime>=1.23,<2
+
+# Tests
+pytest>=8.0
+httpx2>=2.12         # transport for fastapi.testclient (replaced httpx)

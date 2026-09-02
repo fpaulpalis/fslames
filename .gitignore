@@ -1,0 +1,67 @@
+# ---------- Node / Next.js ----------
+node_modules/
+.next/
+out/
+build/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.next-docs/
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---------- Datasets & models (NEVER commit these) ----------
+# Video data is large and, in WLASL's case, not ours to redistribute.
+ml/data/raw/
+ml/data/interim/
+ml/data/processed/
+ml/runs/
+ml/checkpoints/
+*.mp4
+*.avi
+*.mov
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+
+# Exported models are build artifacts, not source. Right now the only one is the
+# ~9 MB UNTRAINED smoke model from `export_onnx.py --random`, which is regenerated
+# in seconds and would sit in git history forever for no benefit.
+#
+# TODO (Phase 4): the API image is built from this repo, so the real trained model
+# has to reach the container somehow. Decide between committing it directly
+# (simple, ~9 MB per version) or Git LFS (cleaner history, extra setup) once there
+# is a model actually worth shipping.
+api/models/*.onnx
+api/models/*.onnx.data
+api/models/*.labels.json
+
+# Exception: golden fixtures are small and MUST be committed — they guard train/serve parity.
+!ml/tests/fixtures/*.npy
+!ml/tests/fixtures/*.json
+
+# ---------- Environment ----------
+.env
+.env.local
+.env*.local
+!.env.example
+
+# ---------- Editors / OS ----------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

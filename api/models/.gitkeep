@@ -1,0 +1,11 @@
+Exported ONNX models land here. The contents are gitignored — see .gitignore.
+
+Generate an untrained smoke model to exercise the serving path:
+
+    python ml/src/export_onnx.py --random --num-classes 8
+
+Export a real one once you have a checkpoint:
+
+    python ml/src/export_onnx.py --checkpoint ml/runs/word-v1/best.pt
+
+This directory must exist for the Docker build (`COPY models/ ./models/`).

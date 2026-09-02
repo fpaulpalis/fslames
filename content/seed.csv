@@ -1,0 +1,57 @@
+# Maintain vocabulary here (or in a spreadsheet exported to this shape), then run
+# `python scripts/build_signs.py` to regenerate content/signs.json.
+#
+# wlasl_candidate is a BEST GUESS at whether the word appears in WLASL-100. It has
+# NOT been checked against the real gloss list. Reconcile it against WLASL_v0.3.json
+# once you download the dataset, and do not trust this column until you have.
+#
+# Pipe-separate multiple aliases. Leave a field empty for none.
+slug,gloss_en,gloss_fil,aliases_en,aliases_fil,category,wlasl_candidate
+hello,hello,kumusta,hi|greetings,kamusta|hi,greetings,no
+thank-you,thank you,salamat,thanks,maraming salamat,courtesy,no
+yes,yes,oo,,opo,courtesy,yes
+no,no,hindi,,hindi po,courtesy,yes
+please,please,pakiusap,,paki,courtesy,no
+friend,friend,kaibigan,,kabarkada,people,no
+family,family,pamilya,,mag-anak,family,yes
+mother,mother,nanay,mom|mum,ina|mama,family,yes
+father,father,tatay,dad,ama|papa,family,yes
+man,man,lalaki,,,people,yes
+woman,woman,babae,,,people,yes
+child,child,bata,kid,,people,no
+teacher,teacher,guro,,titser|maestro,education,no
+doctor,doctor,doktor,,manggagamot,people,yes
+deaf,deaf,bingi,,,describing,yes
+name,name,pangalan,,,describing,no
+water,water,tubig,,,food-drink,yes
+eat,eat,kain,,kumain,actions,yes
+drink,drink,inom,,uminom,actions,yes
+apple,apple,mansanas,,,food-drink,yes
+book,book,libro,,aklat,objects,yes
+computer,computer,kompyuter,,,objects,yes
+chair,chair,upuan,,silya,objects,yes
+table,table,mesa,,lamesa,objects,yes
+hat,hat,sumbrero,,,objects,yes
+shirt,shirt,kamiseta,,polo,objects,yes
+house,house,bahay,home,tahanan,objects,no
+school,school,paaralan,,eskwelahan,education,no
+study,study,mag-aral,learn,aral|matuto,education,yes
+language,language,wika,,lengguwahe,education,yes
+write,write,sulat,,magsulat,actions,yes
+walk,walk,lakad,,maglakad,actions,yes
+work,work,trabaho,job,magtrabaho,actions,yes
+play,play,laro,,maglaro,actions,yes
+help,help,tulong,,tumulong,actions,yes
+love,love,mahal,,pag-ibig|pagmamahal,describing,no
+dog,dog,aso,,,animals,yes
+cat,cat,pusa,,,animals,no
+fish,fish,isda,,,animals,yes
+bird,bird,ibon,,,animals,yes
+cow,cow,baka,,,animals,yes
+color,color,kulay,colour,,colors,yes
+red,red,pula,,,colors,yes
+blue,blue,asul,,bughaw,colors,yes
+yellow,yellow,dilaw,,,colors,yes
+black,black,itim,,,colors,yes
+white,white,puti,,,colors,yes
+green,green,berde,,luntian,colors,no

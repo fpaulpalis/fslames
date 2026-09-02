@@ -1,0 +1,28 @@
+# Normalize line endings to LF in the repository and on checkout.
+#
+# This repo is developed on Windows but the API is built into a Linux container.
+# Without this, Git checks files out with CRLF, and any shell script copied into
+# the image fails with "\r: not found" — an error that gives no hint about line
+# endings and costs an afternoon the first time you hit it.
+* text=auto eol=lf
+
+# Binary assets: never touch these.
+*.onnx binary
+*.onnx.data binary
+*.npy binary
+*.npz binary
+*.pt binary
+*.pth binary
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+
+# Generated — collapse in diffs and exclude from language statistics.
+content/signs.json linguist-generated=true
+ml/tests/fixtures/*.json linguist-generated=true

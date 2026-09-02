@@ -45,6 +45,20 @@ personal — and letter practice works with no network at all.
 > Python 3.14. If you hit a wheel problem on a future Python release, dropping to
 > 3.12 is the escape hatch — nothing in this repo depends on a 3.13+ language feature.
 
+## Check that everything works
+
+```bash
+python scripts/verify.py
+```
+
+Runs every automated check there is — tests, feature parity, ONNX export, and a real
+prediction through a live HTTP server — and prints a report saying what each one proves.
+Takes about a minute.
+
+[`docs/verification.md`](docs/verification.md) explains each check, shows how to poke at
+the API by hand, and shows how to **deliberately break things** to confirm the checks are
+real rather than decorative.
+
 ## Quick start
 
 ```bash

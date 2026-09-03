@@ -10,6 +10,9 @@
     "test:watch": "vitest",
     "typecheck": "next typegen && tsc --noEmit"
   },
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "dependencies": {
     "next": "16.3.4",
     "next-intl": "^4.14.2",

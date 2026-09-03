@@ -109,7 +109,7 @@ def test_rejects_clips_with_no_hands_at_all():
 
 
 def test_accepts_a_clip_with_only_one_hand():
-    """Most ASL signs are one-handed; this must not be rejected."""
+    """Most FSL signs are one-handed; this must not be rejected."""
     one_handed = {
         "frames": [
             {"pose": landmarks(33), "left_hand": None, "right_hand": landmarks(21)}

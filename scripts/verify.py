@@ -333,7 +333,7 @@ def check_not_yet_possible() -> None:
 
     docker, _ = run(["docker", "--version"], timeout=30)
     record("SKIP", "docker image build",
-           "Docker installed - try: docker build -t strongasl-api ./api" if docker
+           "Docker installed - try: docker build -t fslames-api ./api" if docker
            else "Docker not installed (only needed to deploy)")
 
     record("SKIP", "model accuracy",
@@ -344,7 +344,7 @@ def check_not_yet_possible() -> None:
 
 def main() -> int:
     print("=" * 68)
-    print("  Strong ASL - full verification")
+    print("  FSLAMES - full verification")
     print("=" * 68)
 
     check_layout()

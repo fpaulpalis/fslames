@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "Strong ASL",
+    "name": "FSLAMES",
     "tagline": "Your comprehensive guide to learning sign language"
   },
   "nav": {
@@ -11,7 +11,7 @@
     "switchLanguage": "Switch language"
   },
   "home": {
-    "welcome": "Welcome to Strong ASL",
+    "welcome": "Welcome to FSLAMES",
     "searchTitle": "Sign Search",
     "searchHelp": "Search for signs by typing the word you are looking for.",
     "searchPlaceholder": "Type the sign here",
@@ -24,15 +24,15 @@
     "title": "Sign Language AI",
     "intro": "Record one sign, review the strongest matches, and jump back into the dictionary when you want to compare the result with a reference example.",
     "wordTitle": "Word Predictor",
-    "wordBody": "Use the word predictor when you want to check a vocabulary sign against entries from the Strong ASL dictionary.",
+    "wordBody": "Use the word predictor when you want to check a vocabulary sign against entries from the FSLAMES dictionary.",
     "wordCta": "Start Word Practice",
     "letterTitle": "Letter Predictor",
     "letterBody": "Use the letter predictor for alphabet drills, fingerspelling warmups, or quick checks while learning handshape distinctions.",
     "letterCta": "Start Letter Practice"
   },
   "dictionary": {
-    "title": "ASL Dictionary",
-    "alphabetTitle": "ASL Alphabet",
+    "title": "FSL Dictionary",
+    "alphabetTitle": "FSL Alphabet",
     "entries": "{count, plural, =0 {no signs} one {# sign} other {# signs}}"
   }
 }

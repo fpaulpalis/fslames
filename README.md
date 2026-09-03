@@ -1,15 +1,15 @@
-# Strong ASL — Filipino Edition
+# FSLAMES — Filipino Sign Language Automated Mobile Education System
 
-A bilingual (English / Filipino) American Sign Language learning app: a searchable sign
-dictionary, alphabet and fingerspelling lessons, and a camera-based AI practice tool that
-tells you which sign you just made.
+A bilingual (English / Filipino) Filipino Sign Language (FSL) learning app: a searchable
+sign dictionary, alphabet and fingerspelling lessons, and a camera-based AI practice tool
+that tells you which sign you just made.
 
-Signs are **ASL**. The interface and the word labels are available in **English and Filipino**.
+Signs are **FSL**. The interface and the word labels are available in **English and Filipino**.
 
 ## Repository layout
 
 ```
-strong-asl-fil/
+fslames/
 ├─ web/    Next.js frontend                → deploys to Vercel
 ├─ api/    FastAPI inference service       → deploys to Render (Docker)
 ├─ ml/     PyTorch training pipeline       → runs locally / on Colab, never deployed

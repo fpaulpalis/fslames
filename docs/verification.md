@@ -49,7 +49,7 @@ created the venvs yet — the error message tells you the exact command.
 
 **api tests (13)** — request validation and error handling. Proves malformed input gets a
 clear `422` rather than a confident wrong answer, that a one-handed clip is *accepted*
-(most ASL signs are one-handed), and that a missing model returns `503` instead of
+(most FSL signs are one-handed), and that a missing model returns `503` instead of
 crashing.
 
 ### 4. Train/serve feature parity
@@ -227,7 +227,7 @@ thing. See [`../content/README.md`](../content/README.md).
 
 | Not covered | Why |
 |---|---|
-| **Docker image** | Docker not installed. Once it is: `docker build -t strongasl-api ./api` |
+| **Docker image** | Docker not installed. Once it is: `docker build -t fslames-api ./api` |
 | **Model accuracy** | No trained model exists. Phase 4 |
 | **Deployment** | Nothing deployed yet |
 | **Visual appearance** | Tests confirm strings translate and pages build; they do not confirm the design looks right. Run `cd web && npm run dev` and look |

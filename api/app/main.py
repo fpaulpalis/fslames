@@ -40,7 +40,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(
-    title="Strong ASL Inference API",
+    title="FSLAMES Inference API",
     description="Landmark-based sign language prediction. Accepts coordinates, never video.",
     version="1.0.0",
     lifespan=lifespan,

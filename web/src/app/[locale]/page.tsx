@@ -1,6 +1,9 @@
+import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+
 import { Link } from "@/i18n/navigation";
+import { SignSearch } from "@/components/dictionary/sign-search";
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
@@ -17,30 +20,13 @@ function HomeContent() {
         <h1 className="text-3xl font-bold sm:text-4xl">{t("welcome")}</h1>
       </section>
 
+      {/* The same component the dictionary uses, so the two search boxes cannot
+          drift apart. Submitting here carries the query to /dictionary, where
+          it seeds the identical box with the identical results. */}
       <section className="border-b border-neutral-200 bg-neutral-50 px-4 py-12">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-bold">{t("searchTitle")}</h2>
-          <p className="mt-2 text-neutral-600">{t("searchHelp")}</p>
-
-          <form action="/dictionary" className="mt-6 flex gap-2">
-            <label htmlFor="q" className="sr-only">
-              {t("searchTitle")}
-            </label>
-            <input
-              id="q"
-              name="q"
-              type="search"
-              placeholder={t("searchPlaceholder")}
-              className="flex-1 rounded-md border border-neutral-300 px-4 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            />
-            <button
-              type="submit"
-              className="rounded-md bg-blue-600 px-5 py-2 font-medium text-white transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            >
-              {t("searchButton")}
-            </button>
-          </form>
-        </div>
+        <Suspense fallback={<div className="mx-auto h-64 max-w-2xl" />}>
+          <SignSearch />
+        </Suspense>
       </section>
 
       <section className="px-4 py-12">

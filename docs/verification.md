@@ -63,9 +63,15 @@ bad predictions and no clue why. This is the single most expensive bug available
 architecture, and this check plus the golden fixtures is the guard against it.
 
 ### 5. Dictionary content
-`signs.json` passes validation: unique slugs, both glosses present, no entry where the
-Filipino translation is identical to the English (which would mean it was never
-translated), no draft entry marked as AI-checkable.
+`signs.json` passes validation: unique slugs, both glosses present, a known section and
+group, a valid `hands` value, no entry where the Filipino translation is identical to the
+English without `same_in_fil` set (which would mean it was never translated), no draft
+entry marked as AI-checkable.
+
+It also checks that both generated copies — `content/signs.json` and the
+`web/src/content/signs.json` that Next.js imports — match what the CSV currently
+produces, so a rebuild that was never run cannot ship a dictionary and a model that
+disagree about the vocabulary.
 
 ### 6. Model architecture
 The transformer builds, runs a forward pass, and gradients flow back to the CLS token.

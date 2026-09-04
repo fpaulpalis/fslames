@@ -25,4 +25,5 @@
 
 # Generated — collapse in diffs and exclude from language statistics.
 content/signs.json linguist-generated=true
+web/src/content/signs.json linguist-generated=true
 ml/tests/fixtures/*.json linguist-generated=true

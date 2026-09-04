@@ -1,57 +1,194 @@
-# Maintain vocabulary here (or in a spreadsheet exported to this shape), then run
-# `python scripts/build_signs.py` to regenerate content/signs.json.
+# FSL vocabulary — the source of truth for the dictionary.
 #
-# wlasl_candidate is a BEST GUESS at whether the word appears in WLASL-100. It has
-# NOT been checked against the real gloss list. Reconcile it against WLASL_v0.3.json
-# once you download the dataset, and do not trust this column until you have.
+# Edit this file (or a spreadsheet exported to this shape), then run:
+#     python scripts/build_signs.py
+# to regenerate content/signs.json and web/src/content/signs.json.
 #
-# Pipe-separate multiple aliases. Leave a field empty for none.
-slug,gloss_en,gloss_fil,aliases_en,aliases_fil,category,wlasl_candidate
-hello,hello,kumusta,hi|greetings,kamusta|hi,greetings,no
-thank-you,thank you,salamat,thanks,maraming salamat,courtesy,no
-yes,yes,oo,,opo,courtesy,yes
-no,no,hindi,,hindi po,courtesy,yes
-please,please,pakiusap,,paki,courtesy,no
-friend,friend,kaibigan,,kabarkada,people,no
-family,family,pamilya,,mag-anak,family,yes
-mother,mother,nanay,mom|mum,ina|mama,family,yes
-father,father,tatay,dad,ama|papa,family,yes
-man,man,lalaki,,,people,yes
-woman,woman,babae,,,people,yes
-child,child,bata,kid,,people,no
-teacher,teacher,guro,,titser|maestro,education,no
-doctor,doctor,doktor,,manggagamot,people,yes
-deaf,deaf,bingi,,,describing,yes
-name,name,pangalan,,,describing,no
-water,water,tubig,,,food-drink,yes
-eat,eat,kain,,kumain,actions,yes
-drink,drink,inom,,uminom,actions,yes
-apple,apple,mansanas,,,food-drink,yes
-book,book,libro,,aklat,objects,yes
-computer,computer,kompyuter,,,objects,yes
-chair,chair,upuan,,silya,objects,yes
-table,table,mesa,,lamesa,objects,yes
-hat,hat,sumbrero,,,objects,yes
-shirt,shirt,kamiseta,,polo,objects,yes
-house,house,bahay,home,tahanan,objects,no
-school,school,paaralan,,eskwelahan,education,no
-study,study,mag-aral,learn,aral|matuto,education,yes
-language,language,wika,,lengguwahe,education,yes
-write,write,sulat,,magsulat,actions,yes
-walk,walk,lakad,,maglakad,actions,yes
-work,work,trabaho,job,magtrabaho,actions,yes
-play,play,laro,,maglaro,actions,yes
-help,help,tulong,,tumulong,actions,yes
-love,love,mahal,,pag-ibig|pagmamahal,describing,no
-dog,dog,aso,,,animals,yes
-cat,cat,pusa,,,animals,no
-fish,fish,isda,,,animals,yes
-bird,bird,ibon,,,animals,yes
-cow,cow,baka,,,animals,yes
-color,color,kulay,colour,,colors,yes
-red,red,pula,,,colors,yes
-blue,blue,asul,,bughaw,colors,yes
-yellow,yellow,dilaw,,,colors,yes
-black,black,itim,,,colors,yes
-white,white,puti,,,colors,yes
-green,green,berde,,luntian,colors,no
+# Columns
+#   slug         URL segment. Lowercase ASCII, digits and hyphens. Must be unique.
+#                It is a permalink — renaming one breaks any link already shared.
+#   gloss_en     Label shown in the /en dictionary.
+#   gloss_fil    Label shown in the /fil dictionary.
+#   aliases_en   Extra English search terms, pipe-separated. May be empty.
+#   aliases_fil  Extra Filipino search terms, pipe-separated. May be empty.
+#   section      One of: filipino-gestures, basic-signs, socializing, time-and-date
+#   group        A subsection of that section — see TAXONOMY in scripts/build_signs.py.
+#                Empty for filipino-gestures, which has no subsections.
+#   hands        left-right (one-handed, either hand) | both (two-handed)
+#   motion       static | dynamic | empty when it has not been confirmed
+#   same_in_fil  yes when the word is genuinely identical in both languages
+#                (the letters, the numerals, FSL, OK). The build rejects an
+#                English gloss repeated as Filipino unless this says so, because
+#                the usual cause is a translation nobody got round to.
+#
+# Adding a word: append a row, run the build. Removing one: delete the row and
+# rebuild. Adding a whole new section or group also needs an edit to TAXONOMY in
+# scripts/build_signs.py and a label in web/messages/en.json and fil.json.
+#
+# ⚠️ Filipino glosses below were written to get the bilingual UI working end to
+# end and have not been reviewed by a Deaf FSL user. Treat them as drafts.
+slug,gloss_en,gloss_fil,aliases_en,aliases_fil,section,group,hands,motion,same_in_fil
+
+# --- Filipino gestures ------------------------------------------------------
+ano,Ano?,Ano?,what,,filipino-gestures,,left-right,,yes
+bless-mano-po,Bless (Mano po),Mano po,mano,pagmamano,filipino-gestures,,left-right,,
+come-here,Come Here,Halika,,pumunta ka rito,filipino-gestures,,both,,
+ewan,Ewan,Ewan,dont know,hindi ko alam,filipino-gestures,,left-right,,yes
+excuse-me,Excuse Me,Makikiraan,pardon me,paraan po,filipino-gestures,,both,,
+menu-bill,Menu (Bill),Singil,bill|check,tseke,filipino-gestures,,both,,
+sana,Sana,Sana,hopefully|i wish,,filipino-gestures,,both,,yes
+
+# --- Basic signs · alphabet -------------------------------------------------
+letter-a,A,A,,,basic-signs,alphabet,left-right,static,yes
+letter-b,B,B,,,basic-signs,alphabet,left-right,static,yes
+letter-c,C,C,,,basic-signs,alphabet,left-right,static,yes
+letter-d,D,D,,,basic-signs,alphabet,left-right,static,yes
+letter-e,E,E,,,basic-signs,alphabet,left-right,static,yes
+letter-f,F,F,,,basic-signs,alphabet,left-right,static,yes
+letter-g,G,G,,,basic-signs,alphabet,left-right,static,yes
+letter-h,H,H,,,basic-signs,alphabet,left-right,static,yes
+letter-i,I,I,,,basic-signs,alphabet,left-right,static,yes
+letter-j,J,J,,,basic-signs,alphabet,left-right,dynamic,yes
+letter-k,K,K,,,basic-signs,alphabet,left-right,static,yes
+letter-l,L,L,,,basic-signs,alphabet,left-right,static,yes
+letter-m,M,M,,,basic-signs,alphabet,left-right,static,yes
+letter-n,N,N,,,basic-signs,alphabet,left-right,static,yes
+letter-enye,Ñ,Ñ,enye|n tilde,enye,basic-signs,alphabet,left-right,dynamic,yes
+letter-ng,Ng,Ng,,,basic-signs,alphabet,both,static,yes
+letter-o,O,O,,,basic-signs,alphabet,left-right,static,yes
+letter-p,P,P,,,basic-signs,alphabet,left-right,static,yes
+letter-q,Q,Q,,,basic-signs,alphabet,left-right,static,yes
+letter-r,R,R,,,basic-signs,alphabet,left-right,static,yes
+letter-s,S,S,,,basic-signs,alphabet,left-right,static,yes
+letter-t,T,T,,,basic-signs,alphabet,left-right,static,yes
+letter-u,U,U,,,basic-signs,alphabet,left-right,static,yes
+letter-v,V,V,,,basic-signs,alphabet,left-right,static,yes
+letter-w,W,W,,,basic-signs,alphabet,left-right,static,yes
+letter-x,X,X,,,basic-signs,alphabet,left-right,static,yes
+letter-y,Y,Y,,,basic-signs,alphabet,left-right,static,yes
+letter-z,Z,Z,,,basic-signs,alphabet,left-right,dynamic,yes
+
+# --- Basic signs · general --------------------------------------------------
+deaf,Deaf,Bingi,,,basic-signs,general,left-right,,
+fsl,FSL,FSL,filipino sign language,wikang senyas ng pilipinas,basic-signs,general,left-right,,yes
+hard-of-hearing,Hard of Hearing,Mahina ang Pandinig,,,basic-signs,general,left-right,,
+hearing,Hearing,Nakaririnig,,nakakarinig,basic-signs,general,left-right,,
+
+# --- Basic signs · numbers --------------------------------------------------
+number-0,0,0,zero,sero|wala,basic-signs,numbers,left-right,static,yes
+number-1,1,1,one,isa,basic-signs,numbers,left-right,static,yes
+number-2,2,2,two,dalawa,basic-signs,numbers,left-right,static,yes
+number-3,3,3,three,tatlo,basic-signs,numbers,left-right,static,yes
+number-4,4,4,four,apat,basic-signs,numbers,left-right,static,yes
+number-5,5,5,five,lima,basic-signs,numbers,left-right,static,yes
+number-6,6,6,six,anim,basic-signs,numbers,left-right,static,yes
+number-7,7,7,seven,pito,basic-signs,numbers,left-right,static,yes
+number-8,8,8,eight,walo,basic-signs,numbers,left-right,static,yes
+number-9,9,9,nine,siyam,basic-signs,numbers,left-right,static,yes
+
+# --- Basic signs · colors ---------------------------------------------------
+blue,Blue,Asul,,bughaw,basic-signs,colors,left-right,,
+green,Green,Berde,,luntian,basic-signs,colors,left-right,,
+red,Red,Pula,,,basic-signs,colors,left-right,,
+brown,Brown (Color),Kayumanggi,,tsokolate,basic-signs,colors,left-right,,
+black,Black,Itim,,,basic-signs,colors,left-right,,
+white,White,Puti,,,basic-signs,colors,left-right,,
+yellow,Yellow,Dilaw,,,basic-signs,colors,left-right,,
+orange,Orange,Kahel,,dalandan,basic-signs,colors,left-right,,
+pink,Pink,Rosas,,kulay rosas,basic-signs,colors,left-right,,
+gray,Gray,Abo,grey,kulay abo,basic-signs,colors,both,,
+violet,Violet,Lila,purple,ube,basic-signs,colors,both,,
+light-color,Light (Color),Maliwanag,,mapusyaw,basic-signs,colors,both,,
+dark-color,Dark (Color),Madilim,,matingkad,basic-signs,colors,both,,
+
+# --- Socializing · basic greetings ------------------------------------------
+hello,Hello,Kumusta,,kamusta,socializing,basic-greetings,left-right,,
+hi,Hi,Hi,,,socializing,basic-greetings,left-right,,yes
+you,You?,Ikaw?,,,socializing,basic-greetings,left-right,,
+good-afternoon,Good Afternoon,Magandang Hapon,,,socializing,basic-greetings,both,,
+good-evening,Good Evening,Magandang Gabi,,,socializing,basic-greetings,both,,
+good-morning,Good Morning,Magandang Umaga,,,socializing,basic-greetings,both,,
+good-night,Good Night,Magandang Gabi (Paalam),,,socializing,basic-greetings,both,,
+good-noon,Good Noon,Magandang Tanghali,,,socializing,basic-greetings,both,,
+how-are-you,How Are You?,Kumusta Ka?,,,socializing,basic-greetings,both,,
+
+# --- Socializing · introducing ----------------------------------------------
+age,Age,Edad,,,socializing,introducing,left-right,,
+filipino,Filipino,Pilipino,,,socializing,introducing,left-right,,
+nation,Nation,Bansa,country,,socializing,introducing,left-right,,
+birthday,Birthday,Kaarawan,,kaarawan,socializing,introducing,both,,
+family,Family,Pamilya,,mag-anak,socializing,introducing,both,,
+
+# --- Socializing · leave-taking ---------------------------------------------
+bye,Bye,Paalam,goodbye,,socializing,leave-taking,left-right,,
+see-you-later,See You Later,Kita Tayo Mamaya,,,socializing,leave-taking,left-right,,
+see-you-tomorrow,See You Tomorrow,Kita Tayo Bukas,,,socializing,leave-taking,left-right,,
+next-time,Next Time,Sa Susunod,,,socializing,leave-taking,both,,
+see-you,See You,Kita Tayo,,,socializing,leave-taking,both,,
+take-care,Take Care,Ingat,,mag-ingat ka,socializing,leave-taking,both,,
+
+# --- Socializing · survival signs -------------------------------------------
+dont-know,Don't Know,Hindi Alam,,di alam,socializing,survival-signs,left-right,,
+dont-understand,Don't Understand,Hindi Maintindihan,,di maintindihan,socializing,survival-signs,left-right,,
+know,Know,Alam,,,socializing,survival-signs,left-right,,
+no,No (Disagree),Hindi,disagree,,socializing,survival-signs,left-right,,
+ok,OK,OK,okay,sige,socializing,survival-signs,left-right,,yes
+please,Please,Pakiusap,,paki,socializing,survival-signs,left-right,,
+sorry,Sorry,Paumanhin,,pasensya na,socializing,survival-signs,left-right,,
+understand,Understand,Naiintindihan,,naunawaan,socializing,survival-signs,left-right,,
+wrong,Wrong,Mali,,,socializing,survival-signs,left-right,,
+yes,Yes,Oo,,opo,socializing,survival-signs,left-right,,
+again,Again,Ulit,repeat,muli,socializing,survival-signs,both,,
+finish,Finish,Tapos,done,natapos,socializing,survival-signs,both,,
+ready,Ready,Handa,,,socializing,survival-signs,both,,
+right,Right,Tama,correct,,socializing,survival-signs,both,,
+
+# --- Socializing · WH and how questions -------------------------------------
+what,What?,Ano?,,,socializing,wh-questions,left-right,,
+when,When?,Kailan?,,,socializing,wh-questions,left-right,,
+why,Why?,Bakit?,,,socializing,wh-questions,left-right,,
+how,How?,Paano?,,,socializing,wh-questions,both,,
+where,Where?,Saan?,,,socializing,wh-questions,both,,
+
+# --- Time and date · days of the week ---------------------------------------
+monday,Monday,Lunes,,,time-and-date,days-of-the-week,left-right,,
+tuesday,Tuesday,Martes,,,time-and-date,days-of-the-week,left-right,,
+wednesday,Wednesday,Miyerkules,,,time-and-date,days-of-the-week,left-right,,
+thursday,Thursday,Huwebes,,,time-and-date,days-of-the-week,left-right,,
+friday,Friday,Biyernes,,,time-and-date,days-of-the-week,left-right,,
+saturday,Saturday,Sabado,,,time-and-date,days-of-the-week,left-right,,
+sunday,Sunday,Linggo,,araw ng linggo,time-and-date,days-of-the-week,left-right,,
+
+# --- Time and date · months of the year -------------------------------------
+january,January,Enero,,,time-and-date,months-of-the-year,both,,
+february,February,Pebrero,,,time-and-date,months-of-the-year,both,,
+march,March,Marso,,,time-and-date,months-of-the-year,both,,
+april,April,Abril,,,time-and-date,months-of-the-year,both,,
+may,May,Mayo,,,time-and-date,months-of-the-year,both,,
+june,June,Hunyo,,,time-and-date,months-of-the-year,both,,
+july,July,Hulyo,,,time-and-date,months-of-the-year,both,,
+august,August,Agosto,,,time-and-date,months-of-the-year,both,,
+september,September,Setyembre,,,time-and-date,months-of-the-year,both,,
+october,October,Oktubre,,,time-and-date,months-of-the-year,both,,
+november,November,Nobyembre,,,time-and-date,months-of-the-year,both,,
+december,December,Disyembre,,,time-and-date,months-of-the-year,both,,
+
+# --- Time and date · signs related to time ----------------------------------
+tomorrow,Tomorrow,Bukas,,,time-and-date,time-signs,left-right,,
+yesterday,Yesterday,Kahapon,,,time-and-date,time-signs,left-right,,
+calendar,Calendar,Kalendaryo,,,time-and-date,time-signs,both,,
+day,Day,Araw,,,time-and-date,time-signs,both,,
+hour,Hour,Oras,,,time-and-date,time-signs,both,,
+later,Later,Mamaya,,,time-and-date,time-signs,both,,
+minute,Minute,Minuto,,,time-and-date,time-signs,both,,
+month,Month,Buwan,,,time-and-date,time-signs,both,,
+second,Second,Segundo,,,time-and-date,time-signs,both,,
+today,Today,Ngayon,,ngayong araw,time-and-date,time-signs,both,,
+week,Week,Linggo (Sanlinggo),,sanlinggo,time-and-date,time-signs,both,,
+year,Year,Taon,,,time-and-date,time-signs,both,,
+
+# --- Time and date · time referent ------------------------------------------
+absent,Absent,Wala,,liban,time-and-date,time-referent,left-right,,
+early,Early,Maaga,,,time-and-date,time-referent,both,,
+next,Next,Susunod,,,time-and-date,time-referent,both,,
+once,Once,Minsan,,,time-and-date,time-referent,both,,

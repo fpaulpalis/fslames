@@ -1,6 +1,6 @@
 # Roadmap and status
 
-Last updated: 2026-09-03
+Last updated: 2026-09-04
 
 ---
 
@@ -41,21 +41,34 @@ mistaken for a working model.
 Done: header with locale toggle, tab nav (Home / Dictionary / AI / Learn), `next-intl`
 routing at `/en` and `/fil`, home page, AI hub page. Both locales prerender statically.
 
-Remaining: footer, About, Contact, Privacy, the six terminology pages from one template,
-the alphabet guide, and the a–z photo grid.
+Remaining: footer, About, Contact, Privacy, and the six terminology pages from one
+template. The alphabet grid moved into Phase 2 and now lives on `/dictionary` — it is
+built from the 28 alphabet entries in `seed.csv`, so it stays a letter grid rather than a
+photo grid until the recordings exist.
 
 **Done when:** every nav link resolves, and toggling `/en` ↔ `/fil` changes every visible
 string with no hardcoded English left behind.
 
 ---
 
-## Phase 2 — Dictionary · ⬜ not started
+## Phase 2 — Dictionary · ⏳ in progress
 
-A–Z index, browse-by-letter, full word list, client-side search, and sign entry pages
-driven by `content/signs.json`. Media uploaded to Cloudflare R2.
+| Item | Status |
+|---|---|
+| FSL vocabulary — 136 signs across 4 sections | ✅ done, replaces the 48 ASL seed words |
+| Per-locale A–Z index (`index.en` / `index.fil`) | ✅ done |
+| `/dictionary` — search, alphabet, index, in that order | ✅ done |
+| Client-side bilingual search | ✅ done, 15 tests |
+| Sign entry pages | ✅ done, 272 prerendered (136 × 2 locales) |
+| Media uploaded to Cloudflare R2 | ⬜ not started — `media.video` is null on all 136 |
+| Handshape / location / movement (`params`) | ⬜ not started — deliberately null, see content/README.md |
 
 **Done when:** every slug has a reachable page, and searching "hello" and "kumusta" both
-find the same entry.
+find the same entry. ✅ Both are covered by `web/src/lib/signs.test.ts`.
+
+**Next action:** record the reference videos. Every entry currently renders an honest
+"no reference video yet" placeholder, which is the last thing between this and a
+dictionary someone can actually learn from.
 
 ---
 
@@ -105,8 +118,10 @@ accounts, only once there is something worth saving.
 | Item | Note |
 |---|---|
 | `api/models/word-v1.onnx` | Currently an **untrained** 8-class smoke model. Do not commit it as if it were real; regenerate or replace before deploy. |
-| `wlasl_candidate` in `seed.csv` | A guess. Reconcile against the real `WLASL_v0.3.json` gloss list before trusting it. |
-| `params` on all sign entries | Deliberately `null`. Handshape/location/movement were not guessed — wrong articulatory data actively teaches people the wrong thing. Fill in from your own recordings. |
+| `wlasl_candidate` in `seed.csv` | **Removed in Phase 2.** The column flagged overlap with the ASL WLASL-100 gloss list. The vocabulary is now FSL-specific — Filipino gestures, Filipino month names, Ñ and Ng — so ASL overlap no longer says anything useful about it. Phase 4 needs a fresh answer to "what can we actually train on", not a resurrected column. |
+| `params` on all sign entries | Deliberately `null`. Handshape/location/movement were not guessed — wrong articulatory data actively teaches people the wrong thing. Fill in from your own recordings. `motion` is empty for the same reason on everything outside the alphabet and numbers. |
+| Filipino glosses | Written to get the bilingual UI working, **not reviewed by a Deaf FSL user**. `content/README.md` lists the specific judgement calls to check first. |
+| Two copies of `signs.json` | `content/signs.json` and `web/src/content/signs.json` are written together and asserted byte-identical. Vercel builds with `web/` as the project root, so the web app cannot import `../../content`. |
 | Python version | 3.14 verified working. The common "you must use 3.11" advice is out of date since mediapipe 1.0. |
 | `torch.onnx.export` | Must use `dynamic_shapes` (not `dynamic_axes`) **and** a batch-2 example, or the batch axis silently pins to 1. Already handled in `export_onnx.py`. |
 | Console encoding on Windows | `torch.onnx.export` prints emoji. On a cp1252 console (Git Bash, several Windows terminals) that raises `UnicodeEncodeError` and kills the export mid-run, with a traceback pointing at torch internals. Fixed by forcing UTF-8 stdout in `export_onnx.py` and setting `PYTHONIOENCODING` for subprocesses in `verify.py`. |

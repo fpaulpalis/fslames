@@ -12,7 +12,7 @@
   },
   "home": {
     "welcome": "Welcome to FSLAMES",
-    "searchTitle": "Sign Search",
+    "searchTitle": "FSL Sign Search",
     "searchHelp": "Search for signs by typing the word you are looking for.",
     "searchPlaceholder": "Type the sign here",
     "searchButton": "Search",
@@ -31,8 +31,67 @@
     "letterCta": "Start Letter Practice"
   },
   "dictionary": {
-    "title": "FSL Dictionary",
+    "searchTitle": "FSL Sign Search",
+    "searchHelp": "Search for signs by typing the word you are looking for.",
+    "searchPlaceholder": "Type the sign here",
+    "searchButton": "Search",
+    "searchClear": "Clear",
+    "searchLabel": "Search the dictionary",
+    "searchEmpty": "No sign matches that word yet.",
+    "searchEmptyHelp": "Try a shorter word, or browse the full list below.",
+    "searchBilingual": "English and Filipino are both searched, so \"hello\" and \"kumusta\" find the same entry.",
     "alphabetTitle": "FSL Alphabet",
-    "entries": "{count, plural, =0 {no signs} one {# sign} other {# signs}}"
+    "alphabetHelp": "The manual alphabet, used to fingerspell names and words that have no sign of their own.",
+    "title": "FSL Dictionary",
+    "intro": "{count} signs, grouped the way they are taught. Pick a letter to jump, or open a section to see everything in it.",
+    "browseLabel": "Browse by first letter",
+    "browseAll": "All",
+    "browseByLetter": "By letter",
+    "browseBySection": "By section",
+    "entries": "{count, plural, =0 {no signs} one {# sign} other {# signs}}",
+    "noEntries": "Nothing filed under this letter.",
+    "backToDictionary": "Back to the dictionary",
+    "alsoCalled": "Also called",
+    "glossOther": "Filipino",
+    "mediaPending": "No reference video yet",
+    "mediaPendingHelp": "This entry has a confirmed word and translation. The recording is still to come.",
+    "formationTitle": "How it is formed",
+    "formationPending": "Handshape, location and movement have not been recorded for this sign, and were deliberately left blank rather than guessed.",
+    "handsLabel": "Hands",
+    "motionLabel": "Movement",
+    "sectionLabel": "Section",
+    "hands": {
+      "left-right": "Left or right hand",
+      "both": "Both hands"
+    },
+    "handsShort": {
+      "both": "2 hands"
+    },
+    "motion": {
+      "static": "Static",
+      "dynamic": "Dynamic",
+      "unknown": "Not recorded yet"
+    },
+    "sections": {
+      "filipino-gestures": "Filipino Gestures",
+      "basic-signs": "Basic Signs",
+      "socializing": "Socializing",
+      "time-and-date": "Time and Date"
+    },
+    "groups": {
+      "alphabet": "Alphabet",
+      "general": "General",
+      "numbers": "Numbers",
+      "colors": "Colors",
+      "basic-greetings": "Basic Greetings",
+      "introducing": "Introducing",
+      "leave-taking": "Leave-taking",
+      "survival-signs": "Survival Signs",
+      "wh-questions": "WH and How Questions",
+      "days-of-the-week": "Days of the Week",
+      "months-of-the-year": "Months of the Year",
+      "time-signs": "Signs Related to Time",
+      "time-referent": "Time Referent"
+    }
   }
 }

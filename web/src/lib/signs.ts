@@ -36,7 +36,8 @@ export interface Sign {
   group: string;
   hands: Hands;
   motion: Motion;
-  media: { video: string | null; poster: string | null };
+  /** Bucket-relative paths; resolve with @/lib/media, never render directly. */
+  media: { video: string | null; poster: string | null; hash: string | null };
   params: Record<string, unknown> | null;
   notes: Record<Locale, string>;
   modelLabel: string | null;

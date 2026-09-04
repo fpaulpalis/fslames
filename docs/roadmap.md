@@ -60,15 +60,21 @@ string with no hardcoded English left behind.
 | `/dictionary` — search, alphabet, index, in that order | ✅ done |
 | Client-side bilingual search | ✅ done, 15 tests |
 | Sign entry pages | ✅ done, 272 prerendered (136 × 2 locales) |
-| Media uploaded to Cloudflare R2 | ⬜ not started — `media.video` is null on all 136 |
+| Media pipeline (`scan_media.py` → `media.json` → player) | ✅ done, verified end to end |
+| Recordings made and uploaded to Cloudflare R2 | ⬜ not started — 0 of 136 recorded |
 | Handshape / location / movement (`params`) | ⬜ not started — deliberately null, see content/README.md |
 
 **Done when:** every slug has a reachable page, and searching "hello" and "kumusta" both
 find the same entry. ✅ Both are covered by `web/src/lib/signs.test.ts`.
 
-**Next action:** record the reference videos. Every entry currently renders an honest
-"no reference video yet" placeholder, which is the last thing between this and a
-dictionary someone can actually learn from.
+**Next action:** record the videos. The plumbing is finished and tested — drop
+`media/video/<slug>.mp4` in, run `scan_media.py` then `build_signs.py`, and that sign's
+page swaps its placeholder for a looping player. See `content/README.md` for the
+recording spec; the aspect ratio and the loop-friendly rest position are the two choices
+that are expensive to change afterwards.
+
+Fill in `params` and the blank `motion` values during the same session — that is when you
+will know the answers, and it saves signing all 136 twice.
 
 ---
 

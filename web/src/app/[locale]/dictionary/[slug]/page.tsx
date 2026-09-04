@@ -5,6 +5,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { SIGNS, getSign, type Sign } from "@/lib/signs";
+import { resolveMedia } from "@/lib/media";
+import { SignVideo } from "@/components/dictionary/sign-video";
 
 // One page per sign, prerendered at build time. The parent [locale] segment
 // already generates the locales, so this only supplies the slugs.
@@ -74,7 +76,12 @@ export default async function SignPage({
         />
       </dl>
 
-      <MediaPlaceholder sign={sign} pending={t("mediaPending")} help={t("mediaPendingHelp")} />
+      <SignMedia
+        sign={sign}
+        label={sign.gloss[current]}
+        pending={t("mediaPending")}
+        help={t("mediaPendingHelp")}
+      />
 
       <section className="mt-8">
         <h2 className="text-xl font-bold">{t("formationTitle")}</h2>
@@ -108,27 +115,25 @@ function Fact({
   );
 }
 
-function MediaPlaceholder({
+function SignMedia({
   sign,
+  label,
   pending,
   help,
 }: {
   sign: Sign;
+  label: string;
   pending: string;
   help: string;
 }) {
-  if (sign.media.video) {
-    return (
-      <video
-        className="mt-8 w-full rounded-xl border border-neutral-200"
-        controls
-        playsInline
-        poster={sign.media.poster ?? undefined}
-        src={sign.media.video}
-      />
-    );
+  const media = resolveMedia(sign);
+
+  if (media) {
+    return <SignVideo src={media.video} poster={media.poster} label={label} />;
   }
 
+  // Not an empty box: a reader needs to know the recording is missing rather
+  // than assume the page failed to load.
   return (
     <div className="mt-8 flex aspect-video flex-col items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-neutral-50 p-6 text-center">
       <p className="font-medium text-neutral-700">{pending}</p>

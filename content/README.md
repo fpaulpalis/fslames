@@ -25,6 +25,7 @@ Two things that are **not** just a CSV edit:
 | What you want | Also edit |
 |---|---|
 | A new **section** or **group** | `TAXONOMY` in `scripts/build_signs.py`, then add a label to `dictionary.sections` / `dictionary.groups` in **both** `web/messages/en.json` and `web/messages/fil.json` |
+| A **reference video** | nothing here — drop the file in `media/video/<slug>.mp4` and run `scripts/scan_media.py`, see [Reference recordings](#reference-recordings) |
 | A new **field** on every sign | `build_entry` and `validate` in the build script, the `Sign` type in `web/src/lib/signs.ts`, and wherever it should render |
 
 ⚠️ **`slug` is a permalink.** Renaming one breaks every link already shared and every
@@ -56,6 +57,10 @@ The build writes the same bytes to two paths:
 | `content/signs.json` | `ml/src/export_onnx.py`, to turn a prediction into a dictionary entry |
 | `web/src/content/signs.json` | Next.js, which imports it directly |
 
+`content/media.json` is generated too, but by a different script and on a different
+schedule — see [Reference recordings](#reference-recordings). It is an *input* to this
+build, not an output of it.
+
 The duplicate exists because Vercel builds with `web/` as the project root, so an import
 reaching up to `../../content` resolves locally and then fails in CI. `--check`,
 `scripts/verify.py` and `web/src/lib/signs.test.ts` all assert the two files match, so a
@@ -66,6 +71,87 @@ stale copy fails the build instead of shipping.
 Each entry carries `index.en` and `index.fil`, because the Filipino browse cannot be
 derived from the English one — "Hello" belongs under H and "Kumusta" under K. Filing the
 Filipino entry under H would make browsing in Filipino nonsense.
+
+## Reference recordings
+
+Videos never enter git — `*.mp4` is gitignored and 136 clips would sit in history
+forever. They live in Cloudflare R2. `content/media.json` is the small committed record
+of which signs have one, so `signs.json` builds to identical bytes on your machine and on
+CI, where `media/` does not exist.
+
+### The filename is the link
+
+```
+media/video/<slug>.mp4       media/video/hello.mp4  ->  the sign with slug "hello"
+media/poster/<slug>.jpg      optional still frame
+```
+
+There is no column to keep in sync and no way to point a recording at the wrong entry.
+A file whose name matches no slug is a **build error**, not a warning — a typo would
+otherwise fail silently, leaving that sign quietly stuck on its placeholder.
+
+The layout mirrors the bucket exactly, so uploading is one command with no path
+rewriting.
+
+### Adding recordings
+
+```bash
+# 1. drop the files into media/video/ (and media/poster/ if you have stills)
+python scripts/scan_media.py      # -> content/media.json
+python scripts/build_signs.py     # -> signs.json, now with media paths
+
+# 2. upload. The bucket mirrors media/ one-for-one.
+rclone sync media/ r2:<bucket>/
+
+# 3. point the app at the bucket (web/.env.local)
+NEXT_PUBLIC_MEDIA_BASE_URL=https://media.example.com
+```
+
+To preview without R2 at all, copy `media/` to `web/public/media/` and leave
+`NEXT_PUBLIC_MEDIA_BASE_URL` unset — it falls back to `/media`.
+
+No posters? A `<video>` shows its own first frame once metadata loads, so posters are
+optional. To batch-generate them from the recordings:
+
+```bash
+for f in media/video/*.mp4; do
+  ffmpeg -i "$f" -vf "select=eq(n\,0)" -q:v 3 "media/poster/$(basename "${f%.mp4}").jpg"
+done
+```
+
+### Re-recording a sign
+
+Replace the file, re-run both scripts, re-upload. `scan_media.py` hashes each video and
+`signs.json` carries the first 8 hex as `media.hash`, which the app appends as `?v=`.
+Without it R2's CDN would keep serving the old take to everyone who had already seen it —
+including you, past a hard refresh — with nothing to suggest the file had changed.
+
+### What to record
+
+The dictionary assumes these; changing them later means re-recording, not re-encoding.
+
+| | |
+|---|---|
+| Aspect | **16:9 landscape**. The player and the placeholder both reserve `aspect-video`; a portrait clip letterboxes into black bars. |
+| Framing | Head to waist, centred, with **both hands in frame even for one-handed signs** — the resting hand is part of the sign. |
+| Background | Plain and unpatterned, contrasting with the signer's skin tone and clothing. |
+| Duration | 2–4 seconds. The sign only, no lead-in and no "and now the sign for…". |
+| Start/end | Begin and end in the same neutral rest position. The player **loops**, so a clip that ends mid-movement jumps visibly on every repeat. |
+| Codec | H.264 in MP4, `-movflags +faststart` so playback begins before the file finishes downloading. |
+| Resolution | 720p is plenty. 136 clips at ~500 KB is ~70 MB total; 1080p triples that for detail nobody needs. |
+| Audio | **Strip it.** There is no audio content, and a silent track is bytes that buy nothing. |
+
+A reasonable encode of an existing take:
+
+```bash
+ffmpeg -i raw.mov -an -vf "scale=-2:720" -c:v libx264 -crf 23   -movflags +faststart media/video/hello.mp4
+```
+
+### Two things worth doing in the same session
+
+`params` (handshape, location, movement) and the `motion` column are blank for most signs
+because they were never confirmed. You are the only person who can fill them in, and the
+recording session is when you will know the answers. See below.
 
 ## ⚠️ `contentStatus` — read this before shipping
 

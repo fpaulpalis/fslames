@@ -187,6 +187,13 @@ def check_content() -> None:
     record("PASS" if good else "FAIL", "signs.json passes validation",
            out.strip().splitlines()[-1] if out.strip() else "")
 
+    # Only bites on a machine that actually has media/ - elsewhere it reports
+    # that there is nothing to compare and passes. That is the point: the drift
+    # it catches can only happen where the recordings are.
+    good, out = run([sys.executable, "scripts/scan_media.py", "--check"])
+    record("PASS" if good else "FAIL", "media.json matches the media/ folder",
+           out.strip().splitlines()[-1] if out.strip() else "")
+
 
 def check_model() -> None:
     section("6. Model architecture")

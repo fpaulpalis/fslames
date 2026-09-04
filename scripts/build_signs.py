@@ -29,6 +29,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SEED_PATH = REPO_ROOT / "content" / "seed.csv"
+MEDIA_MANIFEST_PATH = REPO_ROOT / "content" / "media.json"
 OUTPUT_PATHS = (
     REPO_ROOT / "content" / "signs.json",
     REPO_ROOT / "web" / "src" / "content" / "signs.json",
@@ -118,7 +119,38 @@ def sort_key(gloss: str) -> tuple[str, str]:
     return (ascii_only.lower(), gloss.lower())
 
 
-def build_entry(row: dict[str, str], order: int) -> dict:
+
+def load_media() -> dict[str, dict]:
+    """Which signs have a recording, from content/media.json.
+
+    Written by scripts/scan_media.py from the files on your disk. Read here
+    rather than scanning media/ directly so this build produces identical bytes
+    on a machine that has the recordings and on CI, which does not.
+    """
+    if not MEDIA_MANIFEST_PATH.exists():
+        return {}
+    document = json.loads(MEDIA_MANIFEST_PATH.read_text(encoding="utf-8"))
+    return document.get("entries", {})
+
+
+def media_for(slug: str, media: dict[str, dict]) -> dict:
+    """Bucket-relative paths, or nulls until the sign is recorded.
+
+    Paths are relative on purpose. The origin is NEXT_PUBLIC_MEDIA_BASE_URL at
+    render time, so the same signs.json serves local files in dev and R2 in
+    production without a rebuild.
+    """
+    entry = media.get(slug)
+    if not entry:
+        return {"video": None, "poster": None, "hash": None}
+    return {
+        "video": entry["video"],
+        "poster": entry.get("poster"),
+        "hash": entry.get("hash"),
+    }
+
+
+def build_entry(row: dict[str, str], order: int, media: dict[str, dict]) -> dict:
     gloss = {locale: row[f"gloss_{locale}"].strip() for locale in LOCALES}
     motion = row["motion"].strip().lower()
 
@@ -139,8 +171,8 @@ def build_entry(row: dict[str, str], order: int) -> dict:
         # null, not a guess. A sign wrongly labelled static teaches a learner to
         # drop the movement that distinguishes it from another sign.
         "motion": motion or None,
-        # No media until it is actually recorded. The UI must handle null.
-        "media": {"video": None, "poster": None},
+        # Null until the recording exists. The UI must handle that.
+        "media": media_for(row["slug"].strip(), media),
         # Articulatory detail is left null on purpose — see content/README.md.
         # Guessing how a sign is formed would teach people the wrong thing.
         "params": None,
@@ -281,14 +313,26 @@ def main() -> int:
     args = parser.parse_args()
 
     rows = read_seed(SEED_PATH)
+    media = load_media()
     pairs = sorted(
-        ((build_entry(row, order), row) for order, row in enumerate(rows)),
+        ((build_entry(row, order, media), row) for order, row in enumerate(rows)),
         key=lambda pair: sort_key(pair[0]["gloss"]["en"]),
     )
     entries = [entry for entry, _ in pairs]
     source_rows = [row for _, row in pairs]
 
     problems = validate(entries, source_rows)
+
+    # A manifest entry with no matching sign means a slug was renamed or removed
+    # after the media was scanned. Left alone, the recording silently stops being
+    # reachable from anywhere in the app.
+    orphans = sorted(set(media) - {entry["slug"] for entry in entries})
+    if orphans:
+        problems.append(
+            f"content/media.json references {len(orphans)} slug(s) not in seed.csv: "
+            f"{', '.join(orphans)} - re-run scripts/scan_media.py"
+        )
+
     if problems:
         print(f"FAILED — {len(problems)} problem(s) in {SEED_PATH.name}:\n", file=sys.stderr)
         for problem in problems:

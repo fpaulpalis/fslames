@@ -35,6 +35,14 @@ ml/checkpoints/
 *.pth
 *.ckpt
 
+# Reference recordings. These live in Cloudflare R2, not git - 136 clips is
+# hundreds of MB that would sit in history forever. `content/media.json` is the
+# committed record of which signs have one; regenerate it with
+# `python scripts/scan_media.py` after adding files here.
+media/
+# Local preview copy, so the dictionary can play videos without R2.
+web/public/media/
+
 # Exported models are build artifacts, not source. Right now the only one is the
 # ~9 MB UNTRAINED smoke model from `export_onnx.py --random`, which is regenerated
 # in seconds and would sit in git history forever for no benefit.

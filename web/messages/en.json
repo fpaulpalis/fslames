@@ -12,11 +12,6 @@
   },
   "home": {
     "welcome": "Welcome to FSLAMES",
-    "searchTitle": "FSL Sign Search",
-    "searchHelp": "Search for signs by typing the word you are looking for.",
-    "searchPlaceholder": "Type the sign here",
-    "searchButton": "Search",
-    "browseTitle": "Browse the sign database",
     "practiceCta": "Practice With AI"
   },
   "ai": {

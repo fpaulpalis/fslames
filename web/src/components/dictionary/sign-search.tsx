@@ -4,30 +4,46 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
+import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { searchSigns } from "@/lib/signs";
 import { SignList } from "./sign-list";
 
 /**
- * Section 1 — the search box at the top of the dictionary.
+ * The FSL Sign Search box. Used twice: at the top of /dictionary, and as the
+ * search section of the home page. One component so the copy, the ranking and
+ * the results panel cannot drift apart between the two.
  *
  * Filtering happens in the browser against the imported dataset: 136 entries is
  * far too small to justify a round trip per keystroke, and results appear as
  * the reader types rather than after a submit.
  *
- * It is still a real <form> that submits to /dictionary?q=…, so the home page's
- * search box lands here with its query intact and the page keeps working
- * before hydration.
+ * Submitting means something different depending on where it is mounted:
+ *
+ *   on /dictionary  already showing the results — do nothing
+ *   anywhere else   go to /dictionary?q=…, which seeds this same component
+ *                   there with the same query, so the reader keeps their
+ *                   results and gains the A–Z index underneath
+ *
+ * It stays a real GET form so it also works before hydration.
  */
 export function SignSearch() {
   const locale = useLocale() as Locale;
   const t = useTranslations("dictionary");
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
   const results = useMemo(() => searchSigns(query, locale), [query, locale]);
 
   const trimmed = query.trim();
+
+  // usePathname from @/i18n/navigation strips the locale, so this is
+  // "/dictionary" on both /en/dictionary and /fil/dictionary. Derived rather
+  // than passed in as a prop so dropping this component on a third page does
+  // the sensible thing without the caller having to know to opt in.
+  const onDictionaryPage = pathname.startsWith("/dictionary");
 
   return (
     <div className="mx-auto max-w-2xl">
@@ -43,8 +59,10 @@ export function SignSearch() {
         // and input + Search + Clear do not fit on one line at 375px.
         className="mt-6 flex flex-wrap gap-2"
         onSubmit={(event) => {
-          // Already filtered live; submitting would only reload the same page.
           event.preventDefault();
+          // Already filtered live; submitting would only reload the same page.
+          if (onDictionaryPage || trimmed === "") return;
+          router.push(`/dictionary?q=${encodeURIComponent(trimmed)}`);
         }}
       >
         <label htmlFor="q" className="sr-only">

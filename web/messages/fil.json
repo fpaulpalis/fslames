@@ -12,11 +12,6 @@
   },
   "home": {
     "welcome": "Maligayang pagdating sa FSLAMES",
-    "searchTitle": "Paghahanap ng Senyas na FSL",
-    "searchHelp": "Maghanap ng senyas sa pamamagitan ng pag-type ng salitang hinahanap mo.",
-    "searchPlaceholder": "I-type ang senyas dito",
-    "searchButton": "Hanapin",
-    "browseTitle": "Tingnan ang database ng mga senyas",
     "practiceCta": "Magsanay Kasama ang AI"
   },
   "ai": {
